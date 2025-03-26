@@ -141,18 +141,6 @@ int main() {
 
     // A depender da intensidade do som, acende LEDs específicos.
     switch (intensity) {
-      case 0:
-        // Sem som ou som muito baixo: Vermelho com brilho reduzido.
-        npSetLED(0, 200, 0, 0); 
-        npSetLED(4, 200, 0, 0);
-        npSetLED(6, 200, 0, 0);
-        npSetLED(8, 200, 0, 0);
-        npSetLED(12, 200, 0, 0);
-        npSetLED(16, 200, 0, 0);
-        npSetLED(18, 200, 0, 0);
-        npSetLED(20, 200, 0, 0);
-        npSetLED(24, 200, 0, 0);
-        break;
       case 1:
         // Transição: Vermelho diminuindo, Verde aumentando (brilho reduzido).
         npSetLED(12, 0, 0, 200);
@@ -189,34 +177,46 @@ int main() {
         break;
       case 4:
         // Som alto: Verde com brilho reduzido.
-        npSetLED(12, 0, 0, 255);
+        npSetLED(12, 0, 0, 200);
 
-        npSetLED(6, 255, 255, 0);
-        npSetLED(7, 255, 255, 0);
-        npSetLED(8, 255, 255, 0);
-        npSetLED(11, 255, 255, 0);
-        npSetLED(13, 255, 255, 0);
-        npSetLED(16, 255, 255, 0);
-        npSetLED(17, 255, 255, 0);
-        npSetLED(18, 255, 255, 0);
+        npSetLED(6, 200, 200, 0);
+        npSetLED(7, 200, 200, 0);
+        npSetLED(8, 200, 200, 0);
+        npSetLED(11, 200, 200, 0);
+        npSetLED(13, 200, 200, 0);
+        npSetLED(16, 200, 200, 0);
+        npSetLED(17, 200, 200, 0);
+        npSetLED(18, 200, 200, 0);
 
-        npSetLED(0, 0, 255, 0);
-        npSetLED(1, 0, 255, 0);
-        npSetLED(2, 0, 255, 0);
-        npSetLED(3, 0, 255, 0);
-        npSetLED(4, 0, 255, 0);
-        npSetLED(5, 0, 255, 0);
-        npSetLED(9, 0, 255, 0);
-        npSetLED(10, 0, 255, 0);
-        npSetLED(14, 0, 255, 0);
-        npSetLED(15, 0, 255, 0);
-        npSetLED(19, 0, 255, 0);
-        npSetLED(20, 0, 255, 0);
-        npSetLED(21, 0, 255, 0);
-        npSetLED(22, 0, 255, 0);
-        npSetLED(23, 0, 255, 0);
-        npSetLED(24, 0, 255, 0);
+        npSetLED(0, 0, 200, 0);
+        npSetLED(1, 0, 200, 0);
+        npSetLED(2, 0, 200, 0);
+        npSetLED(3, 0, 200, 0);
+        npSetLED(4, 0, 200, 0);
+        npSetLED(5, 0, 200, 0);
+        npSetLED(9, 0, 200, 0);
+        npSetLED(10, 0, 200, 0);
+        npSetLED(14, 0, 200, 0);
+        npSetLED(15, 0, 200, 0);
+        npSetLED(19, 0, 200, 0);
+        npSetLED(20, 0, 200, 0);
+        npSetLED(21, 0, 200, 0);
+        npSetLED(22, 0, 200, 0);
+        npSetLED(23, 0, 200, 0);
+        npSetLED(24, 0, 200, 0);
         break;
+
+      default:
+      npSetLED(0, 200, 0, 0); 
+      npSetLED(4, 200, 0, 0);
+      npSetLED(6, 200, 0, 0);
+      npSetLED(8, 200, 0, 0);
+      npSetLED(12, 200, 0, 0);
+      npSetLED(16, 200, 0, 0);
+      npSetLED(18, 200, 0, 0);
+      npSetLED(20, 200, 0, 0);
+      npSetLED(24, 200, 0, 0);
+      break;
     }
     // Atualiza a matriz.
     npWrite();
@@ -241,9 +241,9 @@ int main() {
      snprintf(db_str, sizeof(db_str), "Nivel: %.0f de 100", db_normalized);  // Valor inteiro
      
      // Desenha as strings no display
-     ssd1306_draw_string(ssd, 0, 0, intensity_str);  // Linha superior
-     ssd1306_draw_string(ssd, 0, 8, avg_str);        // Linha inferior (8 pixels abaixo)
-     ssd1306_draw_string(ssd, 0, 16, db_str);
+     ssd1306_draw_string(ssd, 0, 8, intensity_str);  // Linha superior
+     ssd1306_draw_string(ssd, 0, 24, avg_str);        // Linha inferior (8 pixels abaixo)
+     ssd1306_draw_string(ssd, 0, 42, db_str);
      
      // Atualiza o display
      render_on_display(ssd, &frame_area);
